@@ -22,7 +22,7 @@ verify_os() {
 
     . /etc/os-release
 
-    if [ "$ID" != "debian" && "$ID" != "raspbian" ] || [ "$VERSION_ID" != "12" ]; then
+    if [[ ("$ID" != "debian" && "$ID" != "raspbian") || "$VERSION_ID" != "12" ]]; then
         echo $MSG
         exit 1
     fi
@@ -182,11 +182,11 @@ install_raspotify() {
     LIBRESPOT_NAME=${LIBRESPOT_NAME:-$(hostname)}
 
     sudo tee /etc/raspotify/conf >/dev/null <<EOF
-LIBRESPOT_QUIET=
-LIBRESPOT_AUTOPLAY=
-LIBRESPOT_DISABLE_AUDIO_CACHE=
-LIBRESPOT_DISABLE_CREDENTIAL_CACHE=
-LIBRESPOT_ENABLE_VOLUME_NORMALISATION=
+LIBRESPOT_QUIET=on
+LIBRESPOT_AUTOPLAY=on
+LIBRESPOT_DISABLE_AUDIO_CACHE=on
+LIBRESPOT_DISABLE_CREDENTIAL_CACHE=on
+LIBRESPOT_ENABLE_VOLUME_NORMALISATION=on
 LIBRESPOT_NAME="${LIBRESPOT_NAME}"
 LIBRESPOT_DEVICE_TYPE="avr"
 LIBRESPOT_BITRATE="320"
